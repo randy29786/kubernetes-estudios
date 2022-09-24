@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx-mongo
+#  annotations:
+#    kubernetes.io/ingress.class: "nginx"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: mongo-app.com
+    http:
+     paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mongoexpress-service
+            port:
+              number: 8081
+              
